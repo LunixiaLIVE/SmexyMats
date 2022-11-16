@@ -40,7 +40,7 @@ function SmexyMats:OnInitialize()
 		SetRecipeReagentItem = {	
 			function(self, recipeID, reagentIndex) 
 				if recipeID and reagentIndex then 
-					storedLink = C_TradeSkillUI.GetRecipeReagentItemLink(recipeID, reagentIndex) 
+					storedLink = C_TradeSkillUI.GetRecipeFixedReagentItemLink(recipeID, reagentIndex)
 				end;
 			end, 
 			nil, 
@@ -88,11 +88,15 @@ function SmexyMats:HookTooltips()
 	SmexyMats:RegisterEvent("TRADE_SKILL_SHOW");
 	GameTooltip:HookScript("OnShow", JustTheTip);
 	GameTooltip:HookScript("OnTooltipCleared", function(self) isTooltipDone = nil; end);
-	GameTooltip:HookScript("OnTooltipSetItem", SmexyMats.ModifyItemTooltip);
 	
 	ItemRefTooltip:HookScript("OnShow", JustTheTip);
 	ItemRefTooltip:HookScript("OnTooltipCleared", function(self) isTooltipDone = nil; end);
-	ItemRefTooltip:HookScript("OnTooltipSetItem", SmexyMats.ModifyItemTooltip);
+	
+	TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tooltip, ...)
+		if (tooltip == GameTooltip or tooltip == ItemRefTooltip) then
+			SmexyMats.ModifyItemTooltip(tooltip, ...)
+		end
+	end);
 end;
 
 function SmexyMats:ChatCommand()
@@ -630,4 +634,3 @@ function SmexyMats:SearchDatabase(iID)
 	--Returns Results
 	return xForTTL, xFromTTL, zz, xAltTTL;
 end;
-
