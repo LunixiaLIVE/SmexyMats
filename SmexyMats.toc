@@ -1,7 +1,7 @@
-## Interface: 90200
-## Title: |cFF00CCFFSmexyMats(SM)|r by: |cFFFF8000LunixiaLIVE|r v9.2.0 Retail
+## Interface: 100002
+## Title: |cFF00CCFFSmexyMats(SM)|r by: |cFFFF8000LunixiaLIVE|r v10.0.0.2 Retail
 ## Notes: Tooltip Mod - Notates which Expansion the item is from. Centered around Professions and Crafting.
-## Version: 9.2.0 Retail
+## Version: 10.0.0.2 Retail
 ## SavedVariables: SmexyMatsDB
 ## Dependencies: Ace3
 ## X-Curse-Project-ID: 270824
